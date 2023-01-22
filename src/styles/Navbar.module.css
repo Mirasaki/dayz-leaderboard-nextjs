@@ -1,5 +1,6 @@
 .scrollTracker {
-  z-index: 9000; /* ScrollTracker 9000 */
+  z-index: 9000;
+  /* ScrollTracker 9000 */
   height: 2px;
   inset: 0 0 auto;
   margin-top: 85px;

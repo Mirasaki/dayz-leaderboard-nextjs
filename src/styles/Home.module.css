@@ -32,7 +32,7 @@
   align-items: center;
   text-align: center;
   /* border-radius: 25px; */
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, .3);
 }
 
 .footer a {
@@ -48,7 +48,7 @@
   text-decoration: underline;
   scale: 1.05;
   transition: all 550ms,
-  color 0ms;
+    color 0ms;
 }
 
 .title a {
@@ -74,8 +74,8 @@
   text-align: center;
   z-index: 3;
 
-  background-color: rgba(0,0,0,.3);
-  border: 1px solid rgba(255,255,255,.5);
+  background-color: rgba(0, 0, 0, .3);
+  border: 1px solid rgba(255, 255, 255, .5);
   border-radius: 25px;
   padding: 1rem;
   margin: 2rem;
@@ -84,11 +84,11 @@
 }
 
 .dropdown {
-  background: rgba(0,0,0,.3);
+  background: rgba(0, 0, 0, .3);
   border-radius: 25px;
 }
 
 .dropdownToggle {
-  border: 1px solid rgba(255,255,255,.4);
+  border: 1px solid rgba(255, 255, 255, .4);
   border-radius: 25px;
 }
