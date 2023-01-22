@@ -10,14 +10,14 @@
 
 /* Focused Item / Last clicked Item */
 .accordionItem > h2 > button:not(.collapsed) {
-  background-color: rgba(0,0,0,.6) !important;
+  background-color: rgba(0, 0, 0, .6) !important;
   color: #EEE;
   box-shadow: none;
 }
 
 /* Focused Item / Last clicked Item */
 .accordionItem > h2 > button:focus {
-  background-color: rgba(0,0,0,.9) !important;
+  background-color: rgba(0, 0, 0, .9) !important;
   color: white;
 }
 
@@ -29,11 +29,11 @@
 
 .accordionItem {
   color: white;
-  background-color: rgba(0,0,0,.3);
+  background-color: rgba(0, 0, 0, .3);
 }
 
 .accordionBody {
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(0, 0, 0, .6);
   text-align: center;
 }
 
