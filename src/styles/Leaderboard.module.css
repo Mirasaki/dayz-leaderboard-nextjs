@@ -1,0 +1,43 @@
+.accordion {
+  width: 90%;
+  min-width: 90%;
+  z-index: 1;
+}
+
+.accordionItem {
+  padding: 1em;
+}
+
+/* Focused Item / Last clicked Item */
+.accordionItem > h2 > button:not(.collapsed) {
+  background-color: rgba(0,0,0,.6) !important;
+  color: #EEE;
+  box-shadow: none;
+}
+
+/* Focused Item / Last clicked Item */
+.accordionItem > h2 > button:focus {
+  background-color: rgba(0,0,0,.9) !important;
+  color: white;
+}
+
+/* Accordion Collapse Arrow background - always visible */
+.accordionItem > h2 > button::after {
+  background-color: lightblue;
+  border-radius: 5px;
+}
+
+.accordionItem {
+  color: white;
+  background-color: rgba(0,0,0,.3);
+}
+
+.accordionBody {
+  background-color: rgba(0,0,0,.6);
+  text-align: center;
+}
+
+.accordionBody > hr {
+  margin-top: -16px;
+  background: white;
+}

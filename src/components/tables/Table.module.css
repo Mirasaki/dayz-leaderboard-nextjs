@@ -1,0 +1,83 @@
+.table {
+  width: 100%;
+  border-spacing: 0;
+  border-collapse: collapse; /* Ensure there is no space between the cell borders */
+  margin: 0 auto;
+  overflow-x: scroll;
+}
+
+.caption {
+  font-style: italic;
+  font-size: 90%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* 
+  Table
+  Head
+ */
+
+.table th {
+  padding: 12px 15px;
+  border-bottom: 3px solid #ddd;
+  font-weight: bold;
+}
+
+.table thead tr {
+  background-color: darkslategray;
+  color: #ffffff;
+}
+
+
+
+
+/* 
+  Table
+  Sort
+  Emojis
+*/
+
+.table th.up {
+  background-image: url("./images/up_arrow.png");
+}
+.table th.down {
+  background-image: url("./images/down_arrow.png");
+}
+.table th.default {
+  background-image: url("./images/default.png");
+}
+
+th.up,
+th.default,
+th.down {
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: center right;
+}
+
+
+
+
+/* 
+  Table
+  Body
+*/
+
+.table td {
+  border-top: 1px solid #ddd;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+}
+
+.table tbody tr:first-child td {
+  border-top: none; /* Remove border from first body row */
+}
+
+.table tbody tr:nth-child(n) td {
+  background: #202020;
+}
+
+.table tbody tr:nth-child(2n) td {
+  background: #121212;
+}

@@ -1,0 +1,12 @@
+.pageWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContentSpacer {
+  /*
+    calculate vertical height - header/navbar offset
+    footer off-screen by default at top page
+  */
+  min-height: calc(100vh - 85px);
+}

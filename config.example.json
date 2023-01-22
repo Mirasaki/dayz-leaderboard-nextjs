@@ -1,0 +1,41 @@
+{
+  "BRANDING_NAME": "The Traveller",
+  "BRANDING_URL": "https://discord.gg/thetraveller",
+  "BRANDING_LOGO_FILE_NAME": "TTH.png",
+  "BRANDING_THEME_COLOR": "#00FFFF",
+
+  "PAGE_TITLE": "The Traveller",
+  "PAGE_SUB_TITLE": "DayZ",
+  "PAGE_DESCRIPTION": "DayZ Leaderboard for The Traveller community. Browse the top players, and display your own detailed player statistics.",
+
+  "COMMUNITY_BUTTON_USE_DISCORD_LOGO": true,
+  "COMMUNITY_BUTTON_INVITE_LINK": "https://discord.gg/thetraveller",
+  "COMMUNITY_BUTTON_TEXT": "Join our Discord!",
+
+  "USE_BACKGROUND_IMAGE": true,
+  "DEFAULT_BACKGROUND_COLOR": "#121212",
+  "OVERLAP_BACKGROUND_AND_NAVBAR": true,
+  "NAVBAR_BACKGROUND_COLOR": "rgba(0,0,0,.7)",
+
+  "BRANDING_TEXT_BRAND_COLOR": "#0070f3",
+  "BRANDING_TEXT_LEADERBOARD_COLOR": "#FFF",
+  "BRANDING_BORDER_COLOR": "#000",
+
+  "USE_SCROLL_INDICATOR": true,
+  "SCROLL_INDICATOR_COLOR": "#FFF",
+  "SCROLL_INDICATOR_BACKGROUND_COLOR": "grey",
+
+  "USE_MULTIPLE_SERVER_CONFIGURATION": true,
+  "AUTOMATICALLY_RESOLVE_SERVER_GRANTS": false,
+
+  "CFTOOLS_DAYZ_SERVERS": [
+    {
+      "NAME": "Cherno - The Traveller (Hive)",
+      "SERVER_API_ID": "Your secret server API ID O;"
+    },
+    {
+      "NAME": "Deerisle - The Traveller (Hive)",
+      "SERVER_API_ID": "Your secret server API ID O;"
+    }
+  ]
+}

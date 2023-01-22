@@ -1,0 +1,31 @@
+.footer {
+  z-index: 101; /* Footer, 1 above no-access-overlay */
+  /* align-self: center; */
+  /* max-width: 225px; */
+  /* margin-bottom: .3em; */
+  display: flex;
+  flex-direction: column;
+  padding: .5rem 1rem;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* border-radius: 25px; */
+  background-color: rgba(0,0,0,.3);
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  color: white;
+}
+
+.footer a:hover,
+.footer a:active {
+  text-decoration: underline;
+  scale: 1.05;
+  transition: all 550ms,
+  color 0ms;
+}
