@@ -21,7 +21,7 @@ const LeaderboardAccordion = ({ data }) => {
           eventKey={stats.id}
         >
           <Accordion.Header className={styles.accordionHeader}>
-            <h2>{stats.rank ? `${stats.rank} | ${stats.name}` : stats.name}</h2>
+            {stats.rank ? `${stats.rank} | ${stats.name}` : stats.name}
           </Accordion.Header>
           <Accordion.Body className={styles.accordionBody}>
             <hr />
