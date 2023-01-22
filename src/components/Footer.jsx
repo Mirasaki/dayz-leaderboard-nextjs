@@ -12,7 +12,7 @@ const Footer = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {new Date().getFullYear()} &#169; {config.BRANDING_NAME}
+          {new Date().getUTCFullYear()} &#169; {config.BRANDING_NAME}
         </a>
       </Row>
       <Row>
