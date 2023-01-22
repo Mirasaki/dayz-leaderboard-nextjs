@@ -15,7 +15,9 @@ const LeaderboardAccordion = ({ data }) => {
       color="black"
     >
       {data?.map((stats) => {
-        const nameRankId = stats.rank ? `${stats.rank} | ${stats.name}` : stats.name;
+        const nameRankId = (stats.rank ? `${stats.rank} | ${stats.name}` : stats.name)
+          // Replace repeating spaces by single space
+          .replace(/\s\s+/g, ' ');
         return <Accordion.Item
           className={styles.accordionItem}
           key={stats.id}
