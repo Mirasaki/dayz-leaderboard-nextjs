@@ -54,7 +54,12 @@ npm run build
 npm run start
 ```
 
-The project is now available on [port 3002](http://localhost:3002/). This is only available on your local network. To allow anyone to reach your website basic knowledge of web-server (like [Apache](https://apache.org/) or [Nginx](https://nginx.org/en/)) hosting is required. An example Nginx file is included for your convenience [here](/nginx.example.conf).
+The project is now available on [port 3002](http://localhost:3002/). This is only available on your local network.
+
+To allow anyone to reach your website basic knowledge of web-servers (like [Apache](https://apache.org/) or [Nginx](https://nginx.org/en/)) is required.
+
+- An example Nginx file is included for your convenience [here](/nginx.example.conf).
+- With this conf Nginx serves all static assets, if these fail to load (like no styles applied to the website) use the [minimal conf instead](/nginx.min.conf)
 
 ## ⚙️ Configuration
 
