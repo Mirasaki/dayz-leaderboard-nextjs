@@ -58,13 +58,13 @@
 .title {
   z-index: 1;
   margin: 0;
-  line-height: 1.15;
+  line-height: 2.0;
   font-size: 4rem;
   font-weight: 900;
   font-size: 4rem;
-  line-height: 40px;
+  line-height: 55px;
   text-align: center;
-  line-break: anywhere;
+  line-break: auto;
 }
 
 .form {
