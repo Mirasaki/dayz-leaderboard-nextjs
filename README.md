@@ -137,6 +137,13 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
       "NAME": "Deerisle - The Traveller (Hive)",
       "SERVER_API_ID": "Your secret server API ID O;"
     }
+  ],
+
+  // Filters out specific id's/players from being shown on the leaderboard
+  // Particularly useful for admins
+  "BLACKLISTED_CFTOOLS_IDS": [
+    "ID_1",
+    "ID_2"
   ]
 }
 ```
