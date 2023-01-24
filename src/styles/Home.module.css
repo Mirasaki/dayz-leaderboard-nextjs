@@ -91,4 +91,5 @@
 .dropdownToggle {
   border: 1px solid rgba(255, 255, 255, .4);
   border-radius: 25px;
+  white-space: normal;
 }
