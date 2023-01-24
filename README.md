@@ -149,7 +149,7 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
   "ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST": false,
   // Filters out specific id's/players from being shown on the leaderboard
   // Particularly useful for admins
-  "BLACKLISTED_CFTOOLS_IDS": [
+  "BLACKLISTED_STEAM64_IDS": [
     "ID_1",
     "ID_2"
   ]
