@@ -379,6 +379,14 @@ export async function getServerSideProps ({ query }) {
         rank: index + 1
       }));
     }
+
+    // If player statistics are queried, make the
+    // data unavailable if blacklisted and requested
+    if (
+      stats
+      && config.ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST === false
+      && config.BLACKLISTED_CFTOOLS_IDS.includes(query.steam64)
+    ) stats = null;
   }
 
   // Pass data to the page via props

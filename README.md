@@ -144,6 +144,9 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
     }
   ],
 
+  // This prevents players in the blacklist from being queried,
+  // displaying their detailed player stats
+  "ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST": false,
   // Filters out specific id's/players from being shown on the leaderboard
   // Particularly useful for admins
   "BLACKLISTED_CFTOOLS_IDS": [
