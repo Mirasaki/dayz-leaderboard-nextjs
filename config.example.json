@@ -39,5 +39,6 @@
     }
   ],
 
+  "ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST": false,
   "BLACKLISTED_CFTOOLS_IDS": []
 }
