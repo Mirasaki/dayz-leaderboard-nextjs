@@ -362,6 +362,25 @@ export async function getServerSideProps ({ query }) {
     return stats;
   });
 
+  // Filter out blacklisted entries
+  // IF a valid config is provided
+  if (
+    config.BLACKLISTED_CFTOOLS_IDS
+    && Array.isArray(config.BLACKLISTED_CFTOOLS_IDS)
+    && config.BLACKLISTED_CFTOOLS_IDS[0]
+  ) {
+    // Filter out blacklisted id's
+    const filteredRes = res.filter(({ id }) => !config.BLACKLISTED_CFTOOLS_IDS.includes(id));
+
+    // If the length of the array has changed, process new ranks
+    if (res.length !== filteredRes.length) {
+      res = filteredRes.map((stats, index) => ({
+        ...stats,
+        rank: index + 1
+      }));
+    }
+  }
+
   // Pass data to the page via props
   return { props: { leaderboard: res, stats, grants: appGrants || null } };
 }
