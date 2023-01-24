@@ -37,5 +37,7 @@
       "NAME": "Deerisle - The Traveller (Hive)",
       "SERVER_API_ID": "Your secret server API ID O;"
     }
-  ]
+  ],
+
+  "BLACKLISTED_CFTOOLS_IDS": []
 }
