@@ -40,7 +40,7 @@ const BRANDING_BORDER = `1px 0px 4px ${config.BRANDING_BORDER_COLOR},
 
 export default function Home ({ leaderboard, stats, grants }) {
   const router = useRouter();
-  const [player, setSteam64] = useState('');
+  const [player, setPlayer] = useState('');
 
   // Sorting state management
   const [sortBy, setSortBy] = useState('kills');
@@ -85,7 +85,7 @@ export default function Home ({ leaderboard, stats, grants }) {
   const handleShowPlayerDetails = () => setShowPlayerDetails(true);
   const handleClosePlayerDetails = () => {
     setShowPlayerDetails(false);
-    setSteam64('');
+    setPlayer('');
     const {
       sort,
       server // ignore player
@@ -187,7 +187,7 @@ export default function Home ({ leaderboard, stats, grants }) {
               type="text"
               value={player}
               placeholder="Enter your Steam64"
-              onChange={(e) => setSteam64(e.target.value)}
+              onChange={(e) => setPlayer(e.target.value)}
             />
             {/* Submit button */}
             <Button
