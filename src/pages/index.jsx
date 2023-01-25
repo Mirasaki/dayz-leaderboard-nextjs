@@ -365,9 +365,9 @@ export async function getServerSideProps ({ query }) {
   // Filter out blacklisted entries
   // IF a valid config is provided
   if (
-    config.BLACKLISTED_STEAM64_IDS
-    && Array.isArray(config.BLACKLISTED_STEAM64_IDS)
-    && config.BLACKLISTED_STEAM64_IDS[0]
+    config.BLACKLISTED_CFTOOLS_IDS
+    && Array.isArray(config.BLACKLISTED_CFTOOLS_IDS)
+    && config.BLACKLISTED_CFTOOLS_IDS[0]
   ) {
     // Filter out blacklisted id's
     const filteredRes = res.filter(({ id }) => !config.BLACKLISTED_STEAM64_IDS.includes(id));
@@ -383,9 +383,15 @@ export async function getServerSideProps ({ query }) {
     // If player statistics are queried, make the
     // data unavailable if blacklisted and requested
     if (
-      stats
-      && config.ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST === false
-      && config.BLACKLISTED_STEAM64_IDS.includes(query.steam64)
+      ( stats && config.ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST === false )
+      && (
+        // Blacklist steam 64 - This is just a backup in case someone
+        // provides a steam64 to the blacklist, downside is that
+        // we can't hide them from the global leaderboard if we do
+        config.BLACKLISTED_CFTOOLS_IDS.includes(query.steam64)
+        // Blacklist cftools id
+        || config.BLACKLISTED_CFTOOLS_IDS.includes(stats.id)
+      )
     ) stats = null;
   }
 
