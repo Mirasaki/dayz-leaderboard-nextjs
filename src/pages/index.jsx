@@ -370,7 +370,7 @@ export async function getServerSideProps ({ query }) {
     && config.BLACKLISTED_CFTOOLS_IDS[0]
   ) {
     // Filter out blacklisted id's
-    const filteredRes = res.filter(({ id }) => !config.BLACKLISTED_STEAM64_IDS.includes(id));
+    const filteredRes = res.filter(({ id }) => !config.BLACKLISTED_CFTOOLS_IDS.includes(id));
 
     // If the length of the array has changed, process new ranks
     if (res.length !== filteredRes.length) {
