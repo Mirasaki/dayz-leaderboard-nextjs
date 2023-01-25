@@ -175,7 +175,7 @@ export default function Home ({ leaderboard, stats, grants }) {
           >
             {/* Info tooltip */}
             <MouseOverTooltip tooltip={<p>
-              Filter by in-game name, or type your player and hit go/enter!
+              Filter by in-game name, or type your Steam64/CFTools ID and hit go/enter!
               <br />
               <br />
               If only 1 survivor is shown, clicking go/enter will automatically retrieve player stats for that specific player.
