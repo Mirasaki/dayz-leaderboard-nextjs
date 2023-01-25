@@ -40,7 +40,7 @@ const BRANDING_BORDER = `1px 0px 4px ${config.BRANDING_BORDER_COLOR},
 
 export default function Home ({ leaderboard, stats, grants }) {
   const router = useRouter();
-  const [steam64, setSteam64] = useState('');
+  const [player, setSteam64] = useState('');
 
   // Sorting state management
   const [sortBy, setSortBy] = useState('kills');
@@ -88,7 +88,7 @@ export default function Home ({ leaderboard, stats, grants }) {
     setSteam64('');
     const {
       sort,
-      server // ignore steam64
+      server // ignore player
     } = router.query;
     const searchParams = new URLSearchParams();
     if (sort && sortValues.includes(sort)) searchParams.append('sort', sort);
@@ -117,8 +117,8 @@ export default function Home ({ leaderboard, stats, grants }) {
   }, [stats, router.query, grants]);
 
   // Query for in-game name
-  if (steam64) leaderboard = leaderboard
-    .filter((stats) => stats.name.toLowerCase().indexOf(steam64.toLowerCase()) >= 0);
+  if (player) leaderboard = leaderboard
+    .filter((stats) => stats.name.toLowerCase().indexOf(player.toLowerCase()) >= 0);
 
   // Prepare missing value for player details overview
   if (stats) stats.statistics.playtime = stats.playtime;
@@ -153,7 +153,7 @@ export default function Home ({ leaderboard, stats, grants }) {
             onSubmit={(e) => {
               e.preventDefault(); // Prevent default form-submit
               if (
-                !steam64 // Return if empty text input
+                !player // Return if empty text input
                 && leaderboard.length !== 1 // But continue if there's only 1 player showing
                 // to enable go button on low data population
               ) return;
@@ -164,10 +164,10 @@ export default function Home ({ leaderboard, stats, grants }) {
               if (router.query.server) searchParams.append('server', router.query.server);
 
               searchParams.append(
-                'steam64',
+                'player',
                 leaderboard.length === 1
                   ? leaderboard[0].id
-                  : steam64
+                  : player
               );
 
               router.push(`${router.basePath}?${searchParams.toString()}`);
@@ -175,7 +175,7 @@ export default function Home ({ leaderboard, stats, grants }) {
           >
             {/* Info tooltip */}
             <MouseOverTooltip tooltip={<p>
-              Filter by in-game name, or type your steam64 and hit go/enter!
+              Filter by in-game name, or type your player and hit go/enter!
               <br />
               <br />
               If only 1 survivor is shown, clicking go/enter will automatically retrieve player stats for that specific player.
@@ -185,7 +185,7 @@ export default function Home ({ leaderboard, stats, grants }) {
             {/* Text Input */}
             <Form.Control
               type="text"
-              value={steam64}
+              value={player}
               placeholder="Enter your Steam64"
               onChange={(e) => setSteam64(e.target.value)}
             />
@@ -321,19 +321,19 @@ export async function getServerSideProps ({ query }) {
 
   // Resolve UID and fetch player stats
   let stats = null;
-  if (query.playerQuery) {
-    const isSteam64Query = query.playerQuery.match(steamRegex);
-    const isCftoolsIdQuery = query.playerQuery.match(cftoolsIdRegex);
+  if (query.player) {
+    const isSteam64Query = query.player.match(steamRegex);
+    const isCftoolsIdQuery = query.player.match(cftoolsIdRegex);
     try {
       if (isSteam64Query) {
         stats = await backendCftClient.getPlayerDetails({
-          playerId: new SteamId64(query.playerQuery),
+          playerId: new SteamId64(query.player),
           serverApiId
         });
       }
       else if (isCftoolsIdQuery) {
         stats = await backendCftClient.getPlayerDetails({
-          playerId: new CFToolsId(query.playerQuery),
+          playerId: new CFToolsId(query.player),
           serverApiId
         });
       }
@@ -386,9 +386,9 @@ export async function getServerSideProps ({ query }) {
       ( stats && config.ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST === false )
       && (
         // Blacklist steam 64 - This is just a backup in case someone
-        // provides a steam64 to the blacklist, downside is that
+        // provides a player to the blacklist, downside is that
         // we can't hide them from the global leaderboard if we do
-        config.BLACKLISTED_CFTOOLS_IDS.includes(query.playerQuery)
+        config.BLACKLISTED_CFTOOLS_IDS.includes(query.player)
         // Blacklist cftools id
         || config.BLACKLISTED_CFTOOLS_IDS.includes(stats.id)
       )
