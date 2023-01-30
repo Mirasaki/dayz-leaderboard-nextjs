@@ -130,6 +130,13 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
   "SCROLL_INDICATOR_COLOR": "#FFF",
   "SCROLL_INDICATOR_BACKGROUND_COLOR": "grey",
 
+  // Allowed values to sort by in the dropdown menu
+  "LEADERBOARD_ALLOWED_SORT_VALUES": [
+    "kills", "deaths", "kdratio",
+    "longest_kill", "longest_shot", "playtime",
+    "suicides"
+  ],
+
   // Creates a dropdown menu to select servers, if false - only the default server from the .env file is served
   "USE_MULTIPLE_SERVER_CONFIGURATION": true,
 

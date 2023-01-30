@@ -26,6 +26,12 @@
   "SCROLL_INDICATOR_COLOR": "#FFF",
   "SCROLL_INDICATOR_BACKGROUND_COLOR": "grey",
 
+  "LEADERBOARD_ALLOWED_SORT_VALUES": [
+    "kills", "deaths", "kdratio",
+    "longest_kill", "longest_shot", "playtime",
+    "suicides"
+  ],
+
   "USE_MULTIPLE_SERVER_CONFIGURATION": true,
   "AUTOMATICALLY_RESOLVE_SERVER_GRANTS": false,
 
