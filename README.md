@@ -100,7 +100,7 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
   // Branding
   "BRANDING_NAME": "The Traveller",
   "BRANDING_URL": "https://discord.gg/thetraveller",
-  (*) "BRANDING_LOGO_FILE_NAME": "icon.png",
+  (*) "BRANDING_LOGO_FILE_NAME": "logo.png",
 
   // Branding Color/Theme
   "BRANDING_THEME_COLOR": "#00FFFF",
