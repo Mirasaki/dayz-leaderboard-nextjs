@@ -29,6 +29,7 @@ import backendCftClient, { fetchAppGrants } from '../helpers/cftClient';
 // Destructure from our user configuration file
 const {
   BRANDING_BORDER_COLOR,
+  LEADERBOARD_DEFAULT_SORT_VALUE,
   LEADERBOARD_ALLOWED_SORT_VALUES,
   USE_MULTIPLE_SERVER_CONFIGURATION,
   BRANDING_TEXT_LEADERBOARD_COLOR,
@@ -53,7 +54,7 @@ export default function Home ({ leaderboard, stats, grants }) {
   const [player, setPlayer] = useState('');
 
   // Sorting state management
-  const [sortBy, setSortBy] = useState('kdratio');
+  const [sortBy, setSortBy] = useState(LEADERBOARD_DEFAULT_SORT_VALUE);
   const handleUpdateSortBy = (sortValue) => {
     if (!LEADERBOARD_ALLOWED_SORT_VALUES.includes(sortValue)) return;
     setSortBy(sortValue);
@@ -115,7 +116,7 @@ export default function Home ({ leaderboard, stats, grants }) {
     const { sort, server } = router.query;
     if (sort) {
       if (LEADERBOARD_ALLOWED_SORT_VALUES.includes(sort)) setSortBy(sort);
-      else setSortBy('kdratio');
+      else setSortBy(LEADERBOARD_DEFAULT_SORT_VALUE);
     }
 
     if (server) {
