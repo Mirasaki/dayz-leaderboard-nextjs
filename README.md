@@ -93,6 +93,8 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
 
 *Values marked with `(*)` use static files that are automatically served from the `/public` folder. If you change `BRANDING_LOGO_FILE_NAME` to `logo.jpeg`, that file should exist in the `/public` folder*
 
+❗**Don't use this! Use the [example configuration](/config.example.json) file instead** ❗
+
 ```json
 {
   // Branding
