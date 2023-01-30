@@ -43,7 +43,7 @@ export default function Home ({ leaderboard, stats, grants }) {
   const [player, setPlayer] = useState('');
 
   // Sorting state management
-  const [sortBy, setSortBy] = useState('kills');
+  const [sortBy, setSortBy] = useState('kdratio');
   const handleUpdateSortBy = (sortValue) => {
     if (!sortValues.includes(sortValue)) return;
     setSortBy(sortValue);
@@ -105,7 +105,7 @@ export default function Home ({ leaderboard, stats, grants }) {
     const { sort, server } = router.query;
     if (sort) {
       if (sortValues.includes(sort)) setSortBy(sort);
-      else setSortBy('kills');
+      else setSortBy('kdratio');
     }
 
     if (server) {
