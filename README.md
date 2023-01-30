@@ -173,6 +173,11 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
 }
 ```
 
+## Common Issues
+
+### ERR_ABORTED
+If you're getting `net::ERR_ABORTED 404` errors, that means you have created a new production build (`npm run build`) but the process listening on your port is still trying to serve previous build files - fix this by restarting your process.
+
 ## Author
 
 👤 **Richard Hillebrand (Mirasaki)**
