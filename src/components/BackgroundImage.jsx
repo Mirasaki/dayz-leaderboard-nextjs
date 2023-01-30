@@ -44,7 +44,7 @@ function BackgroundImage () {
     }}>
       {config.USE_BACKGROUND_IMAGE
         && <Image fill
-          src={'/background.png'}
+          src={`/${config.BACKGROUND_IMAGE_FILE_NAME}`}
           alt="background image"
           style={{
             objectFit: 'cover',
