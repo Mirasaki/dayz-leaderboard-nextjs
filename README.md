@@ -130,9 +130,12 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
   "SCROLL_INDICATOR_COLOR": "#FFF",
   "SCROLL_INDICATOR_BACKGROUND_COLOR": "grey",
 
+  // The default value to sort by when landing on the page,
+  // value is REQUIRED in the next LEADERBOARD_ALLOWED_SORT_VALUES array
+  "LEADERBOARD_DEFAULT_SORT_VALUE": "kdratio",
   // Allowed values to sort by in the dropdown menu
   "LEADERBOARD_ALLOWED_SORT_VALUES": [
-    "kills", "deaths", "kdratio",
+    "kdratio", "kills", "deaths",
     "longest_kill", "longest_shot", "playtime",
     "suicides"
   ],
