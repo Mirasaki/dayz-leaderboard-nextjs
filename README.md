@@ -91,12 +91,14 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
 
 > These are the default values with a bit of an explanation, but comments (lines starting with `//` are **not** valid in JSON - so don't copy-paste this into your live application. This is but a reference.)
 
+*Values marked with `(*)` use static files that are automatically served from the `/public` folder. If you change `BRANDING_LOGO_FILE_NAME` to `logo.jpeg`, that file should exist in the `/public` folder*
+
 ```json
 {
   // Branding
   "BRANDING_NAME": "The Traveller",
   "BRANDING_URL": "https://discord.gg/thetraveller",
-  "BRANDING_LOGO_FILE_NAME": "icon.png",
+  (*) "BRANDING_LOGO_FILE_NAME": "icon.png",
 
   // Branding Color/Theme
   "BRANDING_THEME_COLOR": "#00FFFF",
@@ -116,7 +118,7 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
 
   // Background image
   "USE_BACKGROUND_IMAGE": true,
-  "BACKGROUND_IMAGE_FILE_NAME": "background.png",
+  (*) "BACKGROUND_IMAGE_FILE_NAME": "background.png",
   "DEFAULT_BACKGROUND_COLOR": "#121212",
   "OVERLAP_BACKGROUND_AND_NAVBAR": true,
   "NAVBAR_BACKGROUND_COLOR": "rgba(0,0,0,.7)",
