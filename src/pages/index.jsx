@@ -42,6 +42,27 @@ const {
   ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST
 } = config;
 
+/*
+  Validate that we have all specified entries
+  This is done for users updating to a new release,
+  which doesn't overwrite their config.json file as this
+  is included in the .gitignore file
+*/
+for (const [k, v] of Object.entries({
+  BRANDING_BORDER_COLOR,
+  LEADERBOARD_DEFAULT_SORT_VALUE,
+  LEADERBOARD_ALLOWED_SORT_VALUES,
+  USE_MULTIPLE_SERVER_CONFIGURATION,
+  BRANDING_TEXT_LEADERBOARD_COLOR,
+  BRANDING_URL,
+  BRANDING_TEXT_BRAND_COLOR,
+  BRANDING_NAME,
+  AUTOMATICALLY_RESOLVE_SERVER_GRANTS,
+  CFTOOLS_DAYZ_SERVERS,
+  BLACKLISTED_CFTOOLS_IDS,
+  ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST
+})) if (typeof v === 'undefined') console.error(`Missing required property "${k}" in \`/config.json\` file`);
+
 // Create text backdrop style for main branding
 const BRANDING_BORDER = `1px 0px 4px ${BRANDING_BORDER_COLOR},
 -1px 0px 4px ${BRANDING_BORDER_COLOR},
