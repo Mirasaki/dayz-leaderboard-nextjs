@@ -26,16 +26,48 @@ import styles from '../styles/Home.module.css';
 import { titleCase } from '../helpers/util';
 import backendCftClient, { fetchAppGrants } from '../helpers/cftClient';
 
-const sortValues = [
-  'kills', 'deaths', 'kdratio',
-  'longest_kill', 'longest_shot', 'playtime',
-  'suicides'
-];
+// Destructure from our user configuration file
+const {
+  BRANDING_BORDER_COLOR,
+  LEADERBOARD_DEFAULT_SORT_VALUE,
+  LEADERBOARD_ALLOWED_SORT_VALUES,
+  USE_MULTIPLE_SERVER_CONFIGURATION,
+  BRANDING_TEXT_LEADERBOARD_COLOR,
+  BRANDING_URL,
+  BRANDING_TEXT_BRAND_COLOR,
+  BRANDING_NAME,
+  AUTOMATICALLY_RESOLVE_SERVER_GRANTS,
+  CFTOOLS_DAYZ_SERVERS,
+  BLACKLISTED_CFTOOLS_IDS,
+  ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST
+} = config;
 
-const BRANDING_BORDER = `1px 0px 4px ${config.BRANDING_BORDER_COLOR},
--1px 0px 4px ${config.BRANDING_BORDER_COLOR},
-0px 1px 4px ${config.BRANDING_BORDER_COLOR},
-0px -1px 4px ${config.BRANDING_BORDER_COLOR}
+/*
+  Validate that we have all specified entries
+  This is done for users updating to a new release,
+  which doesn't overwrite their config.json file as this
+  is included in the .gitignore file
+*/
+for (const [k, v] of Object.entries({
+  BRANDING_BORDER_COLOR,
+  LEADERBOARD_DEFAULT_SORT_VALUE,
+  LEADERBOARD_ALLOWED_SORT_VALUES,
+  USE_MULTIPLE_SERVER_CONFIGURATION,
+  BRANDING_TEXT_LEADERBOARD_COLOR,
+  BRANDING_URL,
+  BRANDING_TEXT_BRAND_COLOR,
+  BRANDING_NAME,
+  AUTOMATICALLY_RESOLVE_SERVER_GRANTS,
+  CFTOOLS_DAYZ_SERVERS,
+  BLACKLISTED_CFTOOLS_IDS,
+  ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST
+})) if (typeof v === 'undefined') console.error(`Missing required property "${k}" in \`/config.json\` file`);
+
+// Create text backdrop style for main branding
+const BRANDING_BORDER = `1px 0px 4px ${BRANDING_BORDER_COLOR},
+-1px 0px 4px ${BRANDING_BORDER_COLOR},
+0px 1px 4px ${BRANDING_BORDER_COLOR},
+0px -1px 4px ${BRANDING_BORDER_COLOR}
 `;
 
 export default function Home ({ leaderboard, stats, grants }) {
@@ -43,9 +75,9 @@ export default function Home ({ leaderboard, stats, grants }) {
   const [player, setPlayer] = useState('');
 
   // Sorting state management
-  const [sortBy, setSortBy] = useState('kills');
+  const [sortBy, setSortBy] = useState(LEADERBOARD_DEFAULT_SORT_VALUE);
   const handleUpdateSortBy = (sortValue) => {
-    if (!sortValues.includes(sortValue)) return;
+    if (!LEADERBOARD_ALLOWED_SORT_VALUES.includes(sortValue)) return;
     setSortBy(sortValue);
     router.query.sort = sortValue;
 
@@ -62,7 +94,7 @@ export default function Home ({ leaderboard, stats, grants }) {
   // Select server state management
   const [selectServer, setSelectServer] = useState(
     // Resolve default server name
-    config.USE_MULTIPLE_SERVER_CONFIGURATION
+    USE_MULTIPLE_SERVER_CONFIGURATION
       ? (grants && grants[0] ? grants[0].name : '')
       : ''
   );
@@ -91,7 +123,7 @@ export default function Home ({ leaderboard, stats, grants }) {
       server // ignore player
     } = router.query;
     const searchParams = new URLSearchParams();
-    if (sort && sortValues.includes(sort)) searchParams.append('sort', sort);
+    if (sort && LEADERBOARD_ALLOWED_SORT_VALUES.includes(sort)) searchParams.append('sort', sort);
     if (server) searchParams.append('server', server);
     router.push(`${router.basePath}?${searchParams.toString()}`);
   };
@@ -104,8 +136,8 @@ export default function Home ({ leaderboard, stats, grants }) {
     // Apply to state from url params on hard-refresh
     const { sort, server } = router.query;
     if (sort) {
-      if (sortValues.includes(sort)) setSortBy(sort);
-      else setSortBy('kills');
+      if (LEADERBOARD_ALLOWED_SORT_VALUES.includes(sort)) setSortBy(sort);
+      else setSortBy(LEADERBOARD_DEFAULT_SORT_VALUE);
     }
 
     if (server) {
@@ -137,13 +169,13 @@ export default function Home ({ leaderboard, stats, grants }) {
           {/* Page Title */}
           <h1 className={styles.title} style={{
             textShadow: BRANDING_BORDER,
-            color: config.BRANDING_TEXT_LEADERBOARD_COLOR
+            color: BRANDING_TEXT_LEADERBOARD_COLOR
           }}>
             <Link
-              href={config.BRANDING_URL || '/'}
-              style={{ color: config.BRANDING_TEXT_BRAND_COLOR }}
+              href={BRANDING_URL || '/'}
+              style={{ color: BRANDING_TEXT_BRAND_COLOR }}
             >
-              {config.BRANDING_NAME}
+              {BRANDING_NAME}
             </Link> Leaderboard
           </h1>
 
@@ -198,7 +230,7 @@ export default function Home ({ leaderboard, stats, grants }) {
           </Form>
 
           {/* Select Server Dropdown */}
-          {config.USE_MULTIPLE_SERVER_CONFIGURATION && <Dropdown
+          {USE_MULTIPLE_SERVER_CONFIGURATION && <Dropdown
             className={styles.dropdown}
             style={{ marginBottom: '.2rem' }}
           >
@@ -210,14 +242,14 @@ export default function Home ({ leaderboard, stats, grants }) {
               Server: {selectServer}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {config.AUTOMATICALLY_RESOLVE_SERVER_GRANTS
+              {AUTOMATICALLY_RESOLVE_SERVER_GRANTS
                 ? grants?.map((serverCfg) => {
                   return (<Dropdown.Item
                     key={serverCfg.name}
                     onClick={() => handleUpdateSelectServer(serverCfg.name)}
                   >{serverCfg.name}</Dropdown.Item>);
                 })
-                : config.CFTOOLS_DAYZ_SERVERS.map((serverCfg) => {
+                : CFTOOLS_DAYZ_SERVERS.map((serverCfg) => {
                   return (<Dropdown.Item
                     key={serverCfg.NAME}
                     onClick={() => handleUpdateSelectServer(serverCfg.NAME)}
@@ -237,7 +269,7 @@ export default function Home ({ leaderboard, stats, grants }) {
               Sort by: {titleCase(sortBy.replace(/[-_]/g, ' '))}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {sortValues.map((sortValue) => {
+              {LEADERBOARD_ALLOWED_SORT_VALUES.map((sortValue) => {
                 return (<Dropdown.Item
                   key={sortValue}
                   onClick={() => handleUpdateSortBy(sortValue)}
@@ -276,19 +308,19 @@ export async function getServerSideProps ({ query }) {
   let statistic = Statistic.KILLS;
 
   // Set sort key, if valid string provided
-  if (query.sort && sortValues.includes(query.sort)) {
+  if (query.sort && LEADERBOARD_ALLOWED_SORT_VALUES.includes(query.sort)) {
     statistic = query.sort;
   }
 
   // resolve the serverApiID - Defaults to process.env
   let serverApiId = new ServerApiId(process.env.CFTOOLS_SERVER_API_ID);
   let appGrants;
-  if (config.USE_MULTIPLE_SERVER_CONFIGURATION) {
+  if (USE_MULTIPLE_SERVER_CONFIGURATION) {
     const appGrantRes = await fetchAppGrants();
     const grants = appGrantRes.tokens?.server;
 
     // Hit the CFTools grants endpoint to resolve servers
-    if (config.AUTOMATICALLY_RESOLVE_SERVER_GRANTS) {
+    if (AUTOMATICALLY_RESOLVE_SERVER_GRANTS) {
       // Serialize grants for front end
       if (grants) {
         appGrants = grants.map((cfg) => {
@@ -302,7 +334,7 @@ export async function getServerSideProps ({ query }) {
 
     // Manual grant set-up
     else {
-      appGrants = config.CFTOOLS_DAYZ_SERVERS.map(({ NAME, SERVER_API_ID }) => ({
+      appGrants = CFTOOLS_DAYZ_SERVERS.map(({ NAME, SERVER_API_ID }) => ({
         name: NAME,
         id: SERVER_API_ID
       }));
@@ -315,7 +347,7 @@ export async function getServerSideProps ({ query }) {
     }
 
     // Resolve server select option
-    const serverCfg = config.CFTOOLS_DAYZ_SERVERS.find(({ NAME }) => NAME === query.server);
+    const serverCfg = CFTOOLS_DAYZ_SERVERS.find(({ NAME }) => NAME === query.server);
     if (serverCfg) serverApiId = new ServerApiId(serverCfg.SERVER_API_ID);
   }
 
@@ -365,12 +397,12 @@ export async function getServerSideProps ({ query }) {
   // Filter out blacklisted entries
   // IF a valid config is provided
   if (
-    config.BLACKLISTED_CFTOOLS_IDS
-    && Array.isArray(config.BLACKLISTED_CFTOOLS_IDS)
-    && config.BLACKLISTED_CFTOOLS_IDS[0]
+    BLACKLISTED_CFTOOLS_IDS
+    && Array.isArray(BLACKLISTED_CFTOOLS_IDS)
+    && BLACKLISTED_CFTOOLS_IDS[0]
   ) {
     // Filter out blacklisted id's
-    const filteredRes = res.filter(({ id }) => !config.BLACKLISTED_CFTOOLS_IDS.includes(id));
+    const filteredRes = res.filter(({ id }) => !BLACKLISTED_CFTOOLS_IDS.includes(id));
 
     // If the length of the array has changed, process new ranks
     if (res.length !== filteredRes.length) {
@@ -383,14 +415,14 @@ export async function getServerSideProps ({ query }) {
     // If player statistics are queried, make the
     // data unavailable if blacklisted and requested
     if (
-      ( stats && config.ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST === false )
+      ( stats && ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST === false )
       && (
         // Blacklist steam 64 - This is just a backup in case someone
         // provides a player to the blacklist, downside is that
         // we can't hide them from the global leaderboard if we do
-        config.BLACKLISTED_CFTOOLS_IDS.includes(query.player)
+        BLACKLISTED_CFTOOLS_IDS.includes(query.player)
         // Blacklist cftools id
-        || config.BLACKLISTED_CFTOOLS_IDS.includes(stats.id)
+        || BLACKLISTED_CFTOOLS_IDS.includes(stats.id)
       )
     ) stats = null;
   }

@@ -100,7 +100,7 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
   // Branding
   "BRANDING_NAME": "The Traveller",
   "BRANDING_URL": "https://discord.gg/thetraveller",
-  (*) "BRANDING_LOGO_FILE_NAME": "icon.png",
+  (*) "BRANDING_LOGO_FILE_NAME": "logo.png",
 
   // Branding Color/Theme
   "BRANDING_THEME_COLOR": "#00FFFF",
@@ -129,6 +129,16 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
   "USE_SCROLL_INDICATOR": true,
   "SCROLL_INDICATOR_COLOR": "#FFF",
   "SCROLL_INDICATOR_BACKGROUND_COLOR": "grey",
+
+  // The default value to sort by when landing on the page,
+  // value is REQUIRED in the next LEADERBOARD_ALLOWED_SORT_VALUES array
+  "LEADERBOARD_DEFAULT_SORT_VALUE": "kdratio",
+  // Allowed values to sort by in the dropdown menu
+  "LEADERBOARD_ALLOWED_SORT_VALUES": [
+    "kdratio", "kills", "deaths",
+    "longest_kill", "longest_shot", "playtime",
+    "suicides"
+  ],
 
   // Creates a dropdown menu to select servers, if false - only the default server from the .env file is served
   "USE_MULTIPLE_SERVER_CONFIGURATION": true,

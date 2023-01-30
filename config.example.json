@@ -1,7 +1,7 @@
 {
   "BRANDING_NAME": "The Traveller",
   "BRANDING_URL": "https://discord.gg/thetraveller",
-  "BRANDING_LOGO_FILE_NAME": "TTH.png",
+  "BRANDING_LOGO_FILE_NAME": "logo.png",
   "BRANDING_THEME_COLOR": "#00FFFF",
 
   "PAGE_TITLE": "The Traveller",
@@ -25,6 +25,13 @@
   "USE_SCROLL_INDICATOR": true,
   "SCROLL_INDICATOR_COLOR": "#FFF",
   "SCROLL_INDICATOR_BACKGROUND_COLOR": "grey",
+
+  "LEADERBOARD_DEFAULT_SORT_VALUE": "kdratio",
+  "LEADERBOARD_ALLOWED_SORT_VALUES": [
+    "kills", "deaths", "kdratio",
+    "longest_kill", "longest_shot", "playtime",
+    "suicides"
+  ],
 
   "USE_MULTIPLE_SERVER_CONFIGURATION": true,
   "AUTOMATICALLY_RESOLVE_SERVER_GRANTS": false,
