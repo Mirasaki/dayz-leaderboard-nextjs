@@ -16,6 +16,8 @@ This is a DayZ leaderboard website created with [NextJS](https://nextjs.org) usi
 
 A demo deployment showcasing this project can be found [here](https://leaderboard.mirasaki.dev/)
 
+![Preview image](/public/preview.png "Preview")
+
 ## 🤩 Features
 
 - Shows the top 100 leaderboard for your DayZ server
