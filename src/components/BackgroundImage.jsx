@@ -1,5 +1,4 @@
 import React from 'react';
-import Image from 'next/image';
 import config from '../../config.json';
 
 /*
@@ -35,24 +34,20 @@ function BackgroundImage () {
     <div style={{
       position: 'fixed',
       top: config.OVERLAP_BACKGROUND_AND_NAVBAR ? '0px' : '85px', // Navbar/Header height offset
-      width: '100vw',
-      minHeigh: '100vh',
+      width: '100%',
       // Prevent overflow bottom when not overlapping
       height: config.OVERLAP_BACKGROUND_AND_NAVBAR
-        ? '100%'
-        : 'calc(100% - 85px)'
-    }}>
-      {config.USE_BACKGROUND_IMAGE
-        && <Image fill
-          src={`/${config.BACKGROUND_IMAGE_FILE_NAME}`}
-          alt="background image"
-          style={{
-            objectFit: 'cover',
-            objectPosition: 'center'
-          }}
-        />
-      }
-    </div>
+        ? '100lvh'
+        : 'calc(100lvh - 85px)',
+      ...(config.USE_BACKGROUND_IMAGE && {
+        backgroundImage: `url('/${config.BACKGROUND_IMAGE_FILE_NAME}')`,
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
+        backgroundAttachment: 'scroll',
+        zIndex: -1
+      })
+    }} />
   );
 }
 
