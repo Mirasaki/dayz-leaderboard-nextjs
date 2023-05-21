@@ -65,7 +65,7 @@ To allow anyone to reach your website basic knowledge of web-servers (like [Apac
 
 ## ⚙️ Configuration
 
-This project was initially funded by [The Traveller](https://discord.gg/thetraveller) and their configuration and branding will be used throughout the project.
+SKVAD example configuration and branding will be used throughout the project.
 
 ### .env
 
@@ -100,8 +100,8 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
 ```json
 {
   // Branding
-  "BRANDING_NAME": "The Traveller",
-  "BRANDING_URL": "https://discord.gg/thetraveller",
+  "BRANDING_NAME": "SKVAD Community",
+  "BRANDING_URL": "https://discord.gg/skvad",
   (*) "BRANDING_LOGO_FILE_NAME": "logo.png",
 
   // Branding Color/Theme
@@ -111,13 +111,13 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
   "BRANDING_BORDER_COLOR": "#000",
 
   // Page Meta (Search Engine Optimization and Social Media Previews)
-  "PAGE_TITLE": "The Traveller",
+  "PAGE_TITLE": "SKVAD Community",
   "PAGE_SUB_TITLE": "DayZ",
-  "PAGE_DESCRIPTION": "DayZ Leaderboard for The Traveller community. Browse the top players, and display your own detailed player statistics.",
+  "PAGE_DESCRIPTION": "DayZ Leaderboard for SKVAD Community. Browse the top players, and display your own detailed player statistics.",
 
   // Community referral/entry button
   "COMMUNITY_BUTTON_USE_DISCORD_LOGO": true,
-  "COMMUNITY_BUTTON_INVITE_LINK": "https://discord.gg/thetraveller",
+  "COMMUNITY_BUTTON_INVITE_LINK": "https://discord.gg/skvad",
   "COMMUNITY_BUTTON_TEXT": "Join our Discord!",
 
   // Background image
@@ -152,11 +152,11 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
   // Only active when USE_MULTIPLE_SERVER_CONFIGURATION is true
   "CFTOOLS_DAYZ_SERVERS": [
     {
-      "NAME": "Cherno - The Traveller (Hive)",
+      "NAME": "Server #1",
       "SERVER_API_ID": "Your secret server API ID O;"
     },
     {
-      "NAME": "Deerisle - The Traveller (Hive)",
+      "NAME": "Server #2",
       "SERVER_API_ID": "Your secret server API ID O;"
     }
   ],
