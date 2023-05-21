@@ -1,15 +1,15 @@
 {
-  "BRANDING_NAME": "The Traveller",
-  "BRANDING_URL": "https://discord.gg/thetraveller",
+  "BRANDING_NAME": "SKVAD Community",
+  "BRANDING_URL": "https://discord.gg/skvad",
   "BRANDING_LOGO_FILE_NAME": "logo.png",
   "BRANDING_THEME_COLOR": "#00FFFF",
 
-  "PAGE_TITLE": "The Traveller",
+  "PAGE_TITLE": "SKVAD Community",
   "PAGE_SUB_TITLE": "DayZ",
-  "PAGE_DESCRIPTION": "DayZ Leaderboard for The Traveller community. Browse the top players, and display your own detailed player statistics.",
+  "PAGE_DESCRIPTION": "DayZ Leaderboard for SKVAD Community. Browse the top players, and display your own detailed player statistics.",
 
   "COMMUNITY_BUTTON_USE_DISCORD_LOGO": true,
-  "COMMUNITY_BUTTON_INVITE_LINK": "https://discord.gg/thetraveller",
+  "COMMUNITY_BUTTON_INVITE_LINK": "https://discord.gg/skvad",
   "COMMUNITY_BUTTON_TEXT": "Join our Discord!",
 
   "USE_BACKGROUND_IMAGE": true,
@@ -18,7 +18,7 @@
   "OVERLAP_BACKGROUND_AND_NAVBAR": true,
   "NAVBAR_BACKGROUND_COLOR": "rgba(0,0,0,.7)",
 
-  "BRANDING_TEXT_BRAND_COLOR": "#0070f3",
+  "BRANDING_TEXT_BRAND_COLOR": "#d38300",
   "BRANDING_TEXT_LEADERBOARD_COLOR": "#FFF",
   "BRANDING_BORDER_COLOR": "#000",
 
