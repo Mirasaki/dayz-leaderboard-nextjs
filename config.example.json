@@ -38,11 +38,11 @@
 
   "CFTOOLS_DAYZ_SERVERS": [
     {
-      "NAME": "Cherno - The Traveller (Hive)",
+      "NAME": "Server #1",
       "SERVER_API_ID": "Your secret server API ID O;"
     },
     {
-      "NAME": "Deerisle - The Traveller (Hive)",
+      "NAME": "Server #2",
       "SERVER_API_ID": "Your secret server API ID O;"
     }
   ],
