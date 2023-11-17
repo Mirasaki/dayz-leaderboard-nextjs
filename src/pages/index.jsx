@@ -24,7 +24,7 @@ import LeaderboardAccordion from '../components/LeaderboardAccordion';
 import config from '../../config.json';
 import styles from '../styles/Home.module.css';
 import { titleCase } from '../helpers/util';
-import backendCftClient, { fetchAppGrants } from '../helpers/cftClient';
+import backendCftClient from '../helpers/cftClient';
 
 // Destructure from our user configuration file
 const {
@@ -36,7 +36,6 @@ const {
   BRANDING_URL,
   BRANDING_TEXT_BRAND_COLOR,
   BRANDING_NAME,
-  AUTOMATICALLY_RESOLVE_SERVER_GRANTS,
   CFTOOLS_DAYZ_SERVERS,
   BLACKLISTED_CFTOOLS_IDS,
   ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST
@@ -57,7 +56,6 @@ for (const [k, v] of Object.entries({
   BRANDING_URL,
   BRANDING_TEXT_BRAND_COLOR,
   BRANDING_NAME,
-  AUTOMATICALLY_RESOLVE_SERVER_GRANTS,
   CFTOOLS_DAYZ_SERVERS,
   BLACKLISTED_CFTOOLS_IDS,
   ALLOW_PLAYER_STATISTICS_FOR_BLACKLIST
@@ -242,20 +240,12 @@ export default function Home ({ leaderboard, stats, grants }) {
               Server: {selectServer}
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              {AUTOMATICALLY_RESOLVE_SERVER_GRANTS
-                ? grants?.map((serverCfg) => {
-                  return (<Dropdown.Item
-                    key={serverCfg.name}
-                    onClick={() => handleUpdateSelectServer(serverCfg.name)}
-                  >{serverCfg.name}</Dropdown.Item>);
-                })
-                : CFTOOLS_DAYZ_SERVERS.map((serverCfg) => {
-                  return (<Dropdown.Item
-                    key={serverCfg.NAME}
-                    onClick={() => handleUpdateSelectServer(serverCfg.NAME)}
-                  >{serverCfg.NAME}</Dropdown.Item>);
-                })
-              }
+              {CFTOOLS_DAYZ_SERVERS.map((serverCfg) => {
+                return (<Dropdown.Item
+                  key={serverCfg.NAME}
+                  onClick={() => handleUpdateSelectServer(serverCfg.NAME)}
+                >{serverCfg.NAME}</Dropdown.Item>);
+              }) }
             </Dropdown.Menu>
           </Dropdown>}
 
@@ -316,29 +306,10 @@ export async function getServerSideProps ({ query }) {
   let serverApiId = new ServerApiId(process.env.CFTOOLS_SERVER_API_ID);
   let appGrants;
   if (USE_MULTIPLE_SERVER_CONFIGURATION) {
-    const appGrantRes = await fetchAppGrants();
-    const grants = appGrantRes.tokens?.server;
-
-    // Hit the CFTools grants endpoint to resolve servers
-    if (AUTOMATICALLY_RESOLVE_SERVER_GRANTS) {
-      // Serialize grants for front end
-      if (grants) {
-        appGrants = grants.map((cfg) => {
-          return ({
-            name: cfg.resource?.identifier,
-            id: cfg.resource?.id
-          });
-        });
-      }
-    }
-
-    // Manual grant set-up
-    else {
-      appGrants = CFTOOLS_DAYZ_SERVERS.map(({ NAME, SERVER_API_ID }) => ({
-        name: NAME,
-        id: SERVER_API_ID
-      }));
-    }
+    appGrants = CFTOOLS_DAYZ_SERVERS.map(({ NAME, SERVER_API_ID }) => ({
+      name: NAME,
+      id: SERVER_API_ID
+    }));
 
     // Resolve user query
     if (appGrants && query.server) {
@@ -428,5 +399,7 @@ export async function getServerSideProps ({ query }) {
   }
 
   // Pass data to the page via props
-  return { props: { leaderboard: res, stats, grants: appGrants || null } };
+  return { props: { leaderboard: res,
+    stats: JSON.parse(JSON.stringify(stats)),
+    grants: appGrants || null } };
 }

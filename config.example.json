@@ -34,8 +34,6 @@
   ],
 
   "USE_MULTIPLE_SERVER_CONFIGURATION": true,
-  "AUTOMATICALLY_RESOLVE_SERVER_GRANTS": false,
-
   "CFTOOLS_DAYZ_SERVERS": [
     {
       "NAME": "Server #1",
