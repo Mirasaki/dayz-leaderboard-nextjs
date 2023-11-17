@@ -8,6 +8,9 @@ import Col from 'react-bootstrap/Col';
 import '../styles/Leaderboard.module.css';
 
 const PlayerStatOverview = ({ stats }) => {
+  const deaths = (typeof stats.deaths === 'object' ? stats.deaths.other : stats.deaths) ?? 0;
+  const kdratio = stats.kdratio ?? stats.killDeathRatio;
+  const suicides = stats.suicides ?? stats.deaths?.suicides ?? 0;
   return (
     <Container>
       <Row>
@@ -15,10 +18,10 @@ const PlayerStatOverview = ({ stats }) => {
           <i className="fa fa-crosshairs" aria-hidden="true" style={{ color: 'red' }}/> {stats.kills || 0} Kills
         </Col>
         <Col>
-          🪦 {stats.deaths || 0} Deaths
+          🪦 {deaths} Deaths
         </Col>
         <Col>
-          ➗ {stats.killDeathRatio || 0} KDR
+          ➗ {kdratio} KDR
         </Col>
       </Row>
       <Row>
@@ -37,7 +40,7 @@ const PlayerStatOverview = ({ stats }) => {
         padding: '1em 0'
       }}>
         <Col>
-          🪦 {stats.suicides || 0} Suicides
+          🪦 {suicides} Suicides
         </Col>
       </Row>
       <Row style={{

@@ -15,17 +15,20 @@ const PlayerStatsCanvas = ({
   showPlayerDetails,
   handleClosePlayerDetails
 }) => {
-  // Resolve newest player name
-  const activePlayerName = stats?.names?.length >= 1
-    ? stats.names[stats.names.length - 1] // JS 0-index offset
-    : 'Unknown';
+  // Safe to destructure
+  const {
+    names,
+    statistics: { dayz: statistics }
+  } = stats;
 
-  const { statistics } = stats;
-  const weaponsBreakdown = statistics.weaponsBreakdown || undefined;
 
-  // Full missing leaderboard request data
+  statistics.playtime = stats.playtime ?? 0;
+
+  const activePlayerName =
+  names?.length >= 1 ? names[names.length - 1] : 'Unknown';
   statistics.name = activePlayerName;
-  statistics.id = `${statistics.id}-offCanvas`; // Overwrite id to avoid unique map key issues
+
+  const weapons = statistics.weapons || {};
 
   return (
     <Offcanvas
@@ -79,16 +82,16 @@ const PlayerStatsCanvas = ({
             </div>
 
             {/* History of previous names */}
-            {stats.names.length > 2 && <div style={{ paddingTop: '1.5em' }}>
+            {names.length > 2 && <div style={{ paddingTop: '1.5em' }}>
               <h3 className="pb-2 border-bottom">This player is also known as:</h3>
               <ul>
-                {stats.names.slice(1, stats.names.length - 1).map((name) => <li key={name}>{name}</li>)}
+                {names.slice(1, names.length - 1).map((name) => <li key={name}>{name}</li>)}
               </ul>
             </div>}
 
 
             {/* Weapons Overview Table */}
-            {Object.entries(weaponsBreakdown) && <div>
+            {Object.entries(weapons) && <div>
               <h3 className="pb-2 border-bottom">Favorite Weapons:</h3>
               <Container  fluid style={{
                 overflowX: 'auto',
@@ -98,7 +101,7 @@ const PlayerStatsCanvas = ({
 
                 <WeaponTable
                   name={activePlayerName}
-                  data={Object.entries(weaponsBreakdown)
+                  data={Object.entries(weapons)
                   // Default sort is damage
                     .sort(([classA, weaponA], [classB, weaponB]) => weaponB.damage - weaponA.damage)
                     .map(([className, weapon]) => {
