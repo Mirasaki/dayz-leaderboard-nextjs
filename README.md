@@ -144,10 +144,6 @@ NEXT_PUBLIC_LARGE_OG_IMAGE=false
 
   // Creates a dropdown menu to select servers, if false - only the default server from the .env file is served
   "USE_MULTIPLE_SERVER_CONFIGURATION": true,
-
-  // Hits the CFTools API endpoint to automatically resolve available server grants and lists these all as available servers
-  "AUTOMATICALLY_RESOLVE_SERVER_GRANTS": false,
-
   // Multiple, manual, server configuration
   // Only active when USE_MULTIPLE_SERVER_CONFIGURATION is true
   "CFTOOLS_DAYZ_SERVERS": [
