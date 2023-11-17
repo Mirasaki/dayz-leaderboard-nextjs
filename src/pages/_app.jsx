@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SSRProvider from 'react-bootstrap/SSRProvider';
-
 // Styles / CSS
 import '../styles/globals.css'; // Our global stylesheet
 import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap css
@@ -14,7 +12,7 @@ function MyApp ({
   Component,
   pageProps: { session, ...pageProps }
 }) {
-  return <SSRProvider>
+  return (<>
     {/* Default Search Engine Optimization */}
     <SEO
       title={config.PAGE_TITLE}
@@ -26,7 +24,7 @@ function MyApp ({
       color={config.BRANDING_THEME_COLOR}
     />
     <Component {...pageProps} />
-  </SSRProvider>;
+  </>);
 }
 
 MyApp.propTypes = {
