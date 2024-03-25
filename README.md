@@ -6,6 +6,8 @@
   </a>
 </p>
 
+**__‼️ This project has been archived! Check out [the replacement](https://github.com/Mirasaki-Development/dayz-community-template) instead ‼️__**
+
 This is a DayZ leaderboard website created with [NextJS](https://nextjs.org) using data collected and provided by the [CFTools Data API](https://app.cftools.cloud/). Originally funded by TwoPigs from [The Traveller](https://discord.gg/thetraveller) who's always looking to give to the community, here it is, open-source and ready for you to host.
 
 > 😎 Have any questions or just want to chill/have a chat? Come join our [support server](https://discord.gg/jKja5FBnYf)
